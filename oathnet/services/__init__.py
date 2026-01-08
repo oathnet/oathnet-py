@@ -1,6 +1,5 @@
 """OathNet SDK Services."""
 
-from .bulk import BulkSearchService
 from .exports import ExportsService
 from .file_search import FileSearchService
 from .osint import OSINTService
@@ -16,6 +15,5 @@ __all__ = [
     "FileSearchService",
     "ExportsService",
     "OSINTService",
-    "BulkSearchService",
     "UtilityService",
 ]

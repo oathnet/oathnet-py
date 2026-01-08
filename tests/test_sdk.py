@@ -201,19 +201,5 @@ class TestVictimsService:
         assert result.data is not None
 
 
-class TestBulkService:
-    """Test bulk search service."""
-
-    def test_bulk_list_jobs(self, client: OathNetClient):
-        """Test listing bulk jobs."""
-        try:
-            result = client.bulk.list_jobs()
-            # Should return list structure
-            assert hasattr(result, "results")
-        except (ValidationError, AuthenticationError):
-            # Bulk search may require special permissions or different auth
-            pytest.skip("Bulk search not available with current API key")
-
-
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

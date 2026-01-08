@@ -4,7 +4,7 @@ import click
 
 from oathnet import OathNetClient
 
-from .commands import bulk, exports, file_search, osint, search, stealer, utility, victims
+from .commands import exports, file_search, osint, search, stealer, utility, victims
 from .utils import error_console
 
 
@@ -59,7 +59,6 @@ cli.add_command(victims.victims)
 cli.add_command(file_search.file_search)
 cli.add_command(exports.export)
 cli.add_command(osint.osint)
-cli.add_command(bulk.bulk)
 cli.add_command(utility.util)
 
 

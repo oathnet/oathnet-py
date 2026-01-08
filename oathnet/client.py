@@ -15,7 +15,6 @@ from .exceptions import (
 )
 
 if TYPE_CHECKING:
-    from .services.bulk import BulkSearchService
     from .services.exports import ExportsService
     from .services.file_search import FileSearchService
     from .services.osint import OSINTService
@@ -68,7 +67,6 @@ class OathNetClient:
         self._file_search: "FileSearchService | None" = None
         self._exports: "ExportsService | None" = None
         self._osint: "OSINTService | None" = None
-        self._bulk: "BulkSearchService | None" = None
         self._utility: "UtilityService | None" = None
 
     def close(self) -> None:
@@ -295,15 +293,6 @@ class OathNetClient:
 
             self._osint = OSINTService(self)
         return self._osint
-
-    @property
-    def bulk(self) -> "BulkSearchService":
-        """Bulk search service for batch queries."""
-        if self._bulk is None:
-            from .services.bulk import BulkSearchService
-
-            self._bulk = BulkSearchService(self)
-        return self._bulk
 
     @property
     def utility(self) -> "UtilityService":
