@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oathnet"
+version = "1.0.0"
+description = "Official Python SDK and CLI for OathNet API"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+    { name = "OathNet", email = "info@oathnet.org" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "httpx>=0.25.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+oathnet = "oathnet_cli.main:cli"
+
+[project.urls]
+Homepage = "https://oathnet.org"
+Documentation = "https://docs.oathnet.org"
+Repository = "https://github.com/oathnet/oathnet-py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["oathnet", "oathnet_cli"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
