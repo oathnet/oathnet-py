@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oathnet"
-version = "1.0.1"
+version = "1.0.3"
 description = "Official Python SDK and CLI for OathNet API"
 readme = "README.md"
 license = "MIT"

@@ -104,6 +104,9 @@ class VictimsService:
             params["fields[]"] = fields
 
         data = self._client.get("/service/v2/victims/search", params=params)
+        # API returns unwrapped response, wrap it
+        if "success" not in data:
+            data = {"success": True, "data": data}
         return V2VictimsResponse.model_validate(data)
 
     def get_manifest(self, log_id: str) -> ManifestResponse:
@@ -144,8 +147,13 @@ class VictimsService:
             >>> content = client.victims.get_file("vic_001", "file_abc")
             >>> print(content.data.content)
         """
-        data = self._client.get(f"/service/v2/victims/{log_id}/files/{file_id}")
-        return FileContentResponse.model_validate(data)
+        # API returns raw text, not JSON
+        raw_content = self._client.get_raw(f"/service/v2/victims/{log_id}/files/{file_id}")
+        content_str = raw_content.decode("utf-8", errors="replace") if isinstance(raw_content, bytes) else str(raw_content)
+        return FileContentResponse(
+            success=True,
+            data={"content": content_str, "file_id": file_id, "log_id": log_id}
+        )
 
     def download_archive(
         self, log_id: str, output_path: str | Path | None = None
