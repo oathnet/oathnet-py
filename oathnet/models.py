@@ -409,6 +409,22 @@ class FileSearchSummary(BaseModel):
     timeouts: int | None = None
 
 
+class FileSearchColumnRange(BaseModel):
+    """Column range for file search match."""
+
+    start: int | None = None
+    end: int | None = None
+
+
+class FileSearchSnippet(BaseModel):
+    """Snippet containing the matched line and context."""
+
+    line: str | None = None
+    pre: list[str] | None = None
+    post: list[str] | None = None
+    truncated: bool | None = None
+
+
 class FileSearchMatch(BaseModel):
     """Single file search match."""
 
@@ -419,6 +435,8 @@ class FileSearchMatch(BaseModel):
     size_bytes: int | None = None
     match_text: str | None = None
     line_number: int | None = None
+    column_range: FileSearchColumnRange | None = None
+    snippet: FileSearchSnippet | None = None
 
 
 class FileSearchJobData(BaseModel):
