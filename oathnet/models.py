@@ -697,8 +697,8 @@ class DiscordUserResponse(BaseModel):
 class UsernameHistoryEntry(BaseModel):
     """Single username history entry."""
 
-    name: list[str] | None = None
-    time: list[str] | None = None
+    name: str | list[str] | None = None
+    time: str | list[str] | None = None
 
 
 class UsernameHistoryData(BaseModel):
