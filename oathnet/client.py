@@ -58,6 +58,7 @@ class OathNetClient:
             base_url=self.base_url,
             headers={"x-api-key": self.api_key},
             timeout=self.timeout,
+            follow_redirects=True,
         )
 
         # Service instances (lazy loaded)
